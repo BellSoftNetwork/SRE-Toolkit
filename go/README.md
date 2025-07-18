@@ -189,8 +189,9 @@ go get -u ./...
 go mod tidy
 ```
 
-## CI/CD 고려사항
 
+
+## CI/CD 고려사항
 - 빌드 스크립트는 CI 환경에서도 동작하도록 작성
 - 크로스 컴파일을 위한 GOOS/GOARCH 설정 포함
 - 바이너리 크기 최적화 (`-ldflags="-s -w"`)

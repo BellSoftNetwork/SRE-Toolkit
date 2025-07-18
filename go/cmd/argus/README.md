@@ -40,55 +40,55 @@ cd sre-toolkit/go/cmd/argus
 ### 기본 사용
 - 전체 클러스터 스캔
 ```shell
-argus
+./run.sh
 ```
 
 - 도움말 확인
 ```shell
-argus -h
+./run.sh -h
 ```
 
 ### 네임스페이스 필터링
 - 특정 네임스페이스만 스캔
 ```shell
-argus -n default,monitoring
+./run.sh -n default,monitoring
 ```
 
 - 정규식으로 네임스페이스 필터링
 ```shell
-argus -r "^prod-.*"
+./run.sh -r "^prod-.*"
 ```
 
 - 특정 네임스페이스 제외
 ```shell
-argus --exclude ".*-test$"
+./run.sh --exclude ".*-test$"
 ```
 
 ### 스캔 모드
 - 빠른 스캔 (중요 리소스만)
 ```shell
-argus --fast
+./run.sh --fast
 ```
 
 - 확인 없이 자동 실행
 ```shell
-argus -y
+./run.sh -y
 ```
 
 - 빠른 스캔 + 자동 실행
 ```shell
-argus --fast -y
+./run.sh --fast -y
 ```
 
 ### 리포트 생성
 - HTML 리포트 생성
 ```shell
-argus --image
+./run.sh --image
 ```
 
 - 특정 디렉토리에 리포트 저장
 ```shell
-argus --image --output ./reports
+./run.sh --image --output ./reports
 ```
 
 
@@ -97,19 +97,19 @@ argus --image --output ./reports
 ### 개발 환경 스캔
 - dev- 로 시작하는 네임스페이스만 빠르게 스캔
 ```shell
-argus -r "^dev-" --fast -y
+./run.sh -r "^dev-" --fast -y
 ```
 
 ### 프로덕션 환경 전체 검사
 - prod- 로 시작하는 네임스페이스 스캔 후 리포트 생성
 ```shell
-argus -r "^prod-" --image
+./run.sh -r "^prod-" --image
 ```
 
 ### 특정 앱 네임스페이스 확인
 - 지정한 네임스페이스만 스캔
 ```shell
-argus -n app-frontend,app-backend,app-database
+./run.sh -n app-frontend,app-backend,app-database
 ```
 
 
@@ -134,7 +134,7 @@ exclusions:
 ### 커스텀 설정 파일 사용
 - 커스텀 규칙 파일 사용
 ```shell
-argus -f custom-rules.yaml
+./run.sh -f custom-rules.yaml
 ```
 
 
@@ -183,12 +183,12 @@ kubectl auth can-i list deployments --all-namespaces
 ### 느린 성능
 - 빠른 스캔 모드 사용
 ```shell
-argus --fast
+./run.sh --fast
 ```
 
 - 동시 처리 수 조정 (기본값: 20)
 ```shell
-argus -P 50
+./run.sh -P 50
 ```
 
 ## 추가 정보
