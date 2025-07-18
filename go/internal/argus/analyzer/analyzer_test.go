@@ -222,6 +222,23 @@ func TestShouldExcludeResource(t *testing.T) {
 			want: true,
 		},
 		{
+			name: "Rancher RoleBinding - rb- prefix",
+			resource: &domain.KubernetesResource{
+				Identifier: domain.ResourceIdentifier{
+					Kind: "RoleBinding",
+					Name: "rb-clusteradmin",
+				},
+			},
+			config: &config.Config{
+				RancherManagedPatterns: map[string][]*regexp.Regexp{
+					"RoleBinding": {
+						regexp.MustCompile(`^rb-`),
+					},
+				},
+			},
+			want: true,
+		},
+		{
 			name: "자동 관리 어노테이션이 있는 리소스",
 			resource: &domain.KubernetesResource{
 				Annotations: map[string]string{

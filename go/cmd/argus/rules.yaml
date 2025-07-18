@@ -75,7 +75,7 @@ patterns:
   
   # Rancher 관리 리소스 패턴
   rancher_managed:
-    rolebinding:
+    RoleBinding:
       - "^rb-"
   
   # StatefulSet PVC 패턴
