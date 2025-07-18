@@ -1,3 +1,43 @@
 # SRE Toolkit
+SRE 작업을 위한 도구 모음
 
-SRE 작업에 주로 사용되는 자체 개발 도구 모음집
+
+
+## 목차
+- [도구 목록](#도구-목록)
+  - [Go 유틸리티](#go-유틸리티)
+  - [스크립트 도구](#스크립트-도구)
+- [프로젝트 구조](#프로젝트-구조)
+- [개발 가이드](#개발-가이드)
+
+
+
+## 도구 목록
+### Go 유틸리티
+| 도구 | 설명 | 문서 |
+|------|------|------|
+| **Argus** | ArgoCD 미관리 K8s 리소스 탐지 | [README](go/cmd/argus/README.md) |
+
+
+### 스크립트 도구
+| 도구 | 설명 | 문서 |
+|------|------|------|
+| **Claude Account Switcher** | Claude CLI 계정 전환 도구 | [README](scripts/claude-account-switcher/README.md) |
+
+
+
+## 프로젝트 구조
+```
+sre-toolkit/
+├── go/                    # Go 유틸리티
+│   ├── cmd/              # 실행 파일
+│   ├── internal/         # 내부 패키지
+│   └── pkg/              # 공용 패키지
+└── scripts/              # 스크립트 도구
+```
+
+
+
+## 개발 가이드
+- **Go 개발**: [Go 개발 가이드](go/README.md) 참조
+- **스크립트 개발**: [스크립트 가이드](scripts/README.md) 참조
