@@ -190,8 +190,40 @@ cd ../.. && go mod tidy && cd -
 ```
 
 ### 테스트 실행
+#### Argus 전체 테스트 실행
 ```bash
-cd ../.. && go test ./... && cd -
+cd ../.. && go test ./internal/argus/... -v
+```
+
+#### 테스트 커버리지 확인
+```bash
+cd ../.. && go test ./internal/argus/... -cover
+```
+
+#### 특정 패키지 테스트
+```bash
+# analyzer 패키지만 테스트
+cd ../.. && go test ./internal/argus/analyzer -v
+```
+
+```bash
+# config 패키지만 테스트
+cd ../.. && go test ./internal/argus/config -v
+```
+
+```bash
+# service 패키지만 테스트
+cd ../.. && go test ./internal/argus/service -v
+```
+
+#### 빠른 테스트 (캐시 사용)
+```bash
+cd ../.. && go test ./internal/argus/...
+```
+
+#### 테스트 결과 요약
+```bash
+cd ../.. && go test ./internal/argus/... | grep -E "(PASS|FAIL|ok)"
 ```
 
 ### 코드 검증

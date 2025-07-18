@@ -125,9 +125,36 @@ cp go/cmd/argus/build.sh go/cmd/my-tool/
 ```
 
 ### 테스트
+#### 전체 프로젝트 테스트
 ```bash
-cd go
 go test ./...
+```
+
+#### 특정 앱 테스트
+```bash
+# Argus 앱 전체 테스트
+go test ./internal/argus/... -v
+```
+
+#### 테스트 커버리지 확인
+```bash
+# 전체 프로젝트
+go test ./... -cover
+```
+
+```bash
+# 특정 앱 (예: Argus)
+go test ./internal/argus/... -cover
+```
+
+#### 테스트 캐시 클리어
+```bash
+go clean -testcache
+```
+
+#### 벤치마크 테스트
+```bash
+go test -bench=. ./...
 ```
 
 
