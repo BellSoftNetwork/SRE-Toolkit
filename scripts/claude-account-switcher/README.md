@@ -1,203 +1,151 @@
-# Claude Code Account Switcher
-Claude Code 계정을 빠르게 전환할 수 있는 스크립트
+# Claude Account Switcher
 
+## 소개
+Claude Code CLI의 여러 계정을 쉽게 전환할 수 있는 도구입니다.
 
-## 특징
-- **별칭 기반 계정 관리**: 간단한 별칭으로 계정 관리 (권장)
-- **이메일 기반 자동 저장**: 별칭 없이도 이메일로 자동 저장
-- **UUID 기반 저장**: 계정별 고유 디렉토리에 안전하게 저장
-- **메타데이터 관리**: 계정 정보와 저장 시간 기록
-- **자동완성 지원**: Tab 키로 계정 이름 자동완성 (Bash/Zsh)
-
-
-
-## 개요
-Claude Code는 여러 파일에 세션 정보를 저장
-- `~/.claude/.credentials.json` - OAuth 인증 토큰
-- `~/.claude.json` - 사용자 ID, 프로젝트 기록
-- `~/.claude/statsig/` - 세션 ID와 분석 데이터
-- `~/.claude/settings.json` - 사용자 설정
-
-이 스크립트는 모든 관련 파일을 백업하고 복원하여 완전한 계정 전환 지원
-
-
+### 주요 특징
+- 🔐 **안전한 계정 관리**: UUID 기반으로 계정 정보 격리
+- 🏷️ **별칭 지원**: 기억하기 쉬운 이름으로 계정 관리
+- 🔄 **빠른 전환**: 한 번의 명령으로 계정 전환
+- 🎯 **자동완성**: Tab 키로 계정 이름 자동완성
 
 ## 설치
+
 ### 자동 설치 (권장)
 ```bash
+git clone https://gitlab.bellsoft.net/devops/sre-toolkit.git
+cd sre-toolkit/scripts/claude-account-switcher
 ./install.sh
 ```
-- `~/.claude/scripts/`에 필요한 파일 복사
-- Shell RC 파일에 별칭 자동 추가 (중복 방지)
-- 언인스톨 스크립트 생성
 
-
-### 수동 설치
-1. 스크립트 복사
+설치 후 터미널을 재시작하거나 다음 명령 실행:
 ```bash
-mkdir -p ~/.claude/scripts
+source ~/.bashrc  # 또는 source ~/.zshrc
 ```
 
+### 제거
 ```bash
-cp claude-switcher.sh ~/.claude/scripts/
+~/.claude/scripts/claude-account-switcher/uninstall.sh
 ```
-
-```bash
-chmod +x ~/.claude/scripts/claude-switcher.sh
-```
-
-
-2. ~/.bashrc 또는 ~/.zshrc에 추가
-```bash
-source ~/.claude/scripts/claude-aliases.sh
-```
-
-
 
 ## 사용법
-### 설치 후 별칭 사용 (권장)
-#### 계정 저장
-별칭으로 저장 (권장)
-```bash
-claude-save work
-```
 
-이메일로 자동 저장
+### 계정 저장
+현재 로그인된 계정을 저장합니다.
+
 ```bash
+# 별칭으로 저장 (권장)
+claude-save work
+
+# 별칭 없이 저장 (이메일이 별칭이 됨)
 claude-save
 ```
 
-#### 계정 전환
-자동완성으로 전환
+### 계정 전환
+저장된 계정으로 전환합니다.
+
 ```bash
+# 별칭으로 전환
+claude-switch work
+
+# Tab 자동완성 사용
 claude-switch <Tab>
 ```
 
-별칭으로 전환
+### 계정 확인
 ```bash
-claude-switch work
-```
-
-#### 계정 확인
-```bash
+# 현재 계정 확인
 claude-current
-```
 
-```bash
+# 저장된 모든 계정 목록
 claude-list
 ```
 
+## 실제 사용 예시
 
-### 직접 스크립트 실행
-#### 계정 저장
+### 업무/개인 계정 설정
 ```bash
-./claude-switcher.sh save work
-```
-
-#### 계정 전환
-```bash
-./claude-switcher.sh switch work
-```
-
-#### 계정 목록 확인
-```bash
-./claude-switcher.sh list
-```
-
-#### 현재 계정 확인
-```bash
-./claude-switcher.sh current
-```
-
-
-
-## 예제
-### 두 계정 설정하기
-1. 첫 번째 계정으로 로그인
-```bash
+# 1. 업무 계정으로 로그인
 claude code /login
-```
 
-2. 계정 저장
-```bash
+# 2. 업무 계정 저장
 claude-save work
-```
 
-3. 로그아웃 후 두 번째 계정으로 로그인
-```bash
+# 3. 로그아웃 후 개인 계정으로 로그인
 claude code /logout
 claude code /login
-```
 
-4. 두 번째 계정 저장
-```bash
+# 4. 개인 계정 저장
 claude-save personal
 ```
 
-
-### 계정 간 전환
-업무 계정으로 전환
+### 계정 간 빠른 전환
 ```bash
+# 업무 시작
 claude-switch work
-```
 
-개인 계정으로 전환
-```bash
+# 개인 프로젝트 작업
 claude-switch personal
 ```
 
+### 팀 계정 관리
+```bash
+# 프로젝트별 계정 저장
+claude-save project-a
+claude-save project-b
+claude-save dev-team
 
-
-## 주의사항
-1. **계정 전환 후 Claude Code를 재시작**하는 것을 권장
-2. 활성 세션이 있는 경우 종료 후 전환
-3. 백업 파일은 `~/.claude/` 디렉토리에 저장됨
-
-
-
-## 파일 구조
-```
-scripts/claude-account-switcher/
-├── claude-switcher.sh        # 메인 전환 스크립트
-├── claude-aliases.sh         # Shell 별칭 정의
-├── claude-completion.bash    # Bash 자동완성
-├── claude-completion.zsh     # Zsh 자동완성
-├── install.sh               # 설치 스크립트
-└── README.md                # 이 문서
+# 필요에 따라 전환
+claude-switch project-a
 ```
 
+## 명령어 정리
 
-### 계정 저장 구조
-```
-~/.claude/accounts/
-└── <account-uuid>/
-    ├── metadata.json       # 계정 메타데이터 (이메일, 별칭, UUID)
-    ├── credentials.json    # OAuth 토큰
-    ├── claude.json        # 사용자 설정
-    ├── settings.json      # Claude 설정
-    └── statsig/           # 세션 데이터
-```
-
-
+| 명령어 | 설명 | 예시 |
+|--------|------|------|
+| `claude-save [별칭]` | 현재 계정 저장 | `claude-save work` |
+| `claude-switch <별칭>` | 계정 전환 | `claude-switch personal` |
+| `claude-list` | 저장된 계정 목록 | `claude-list` |
+| `claude-current` | 현재 계정 확인 | `claude-current` |
 
 ## 문제 해결
+
 ### 계정이 제대로 전환되지 않는 경우
-1. Claude Code를 완전히 종료
-2. 계정 전환
-3. Claude Code 재시작
-
-### 세션 충돌이 발생하는 경우
-statsig 디렉토리 수동 삭제
-
 ```bash
-rm -rf ~/.claude/statsig
+# 1. Claude Code 완전히 종료
+pkill -f "claude code"
+
+# 2. 계정 전환
+claude-switch work
+
+# 3. Claude Code 재시작
+claude code
 ```
 
+### 자동완성이 작동하지 않는 경우
 ```bash
-mkdir ~/.claude/statsig
+# Bash 사용자
+source ~/.claude/scripts/claude-account-switcher/claude-completion.bash
+
+# Zsh 사용자
+source ~/.claude/scripts/claude-account-switcher/claude-completion.zsh
 ```
 
-### 언인스톨
+### 저장된 계정 삭제
 ```bash
-~/.claude/scripts/uninstall.sh
+# 계정 디렉토리 확인
+ls ~/.claude/accounts/
+
+# 특정 계정 삭제 (UUID 확인 후)
+rm -rf ~/.claude/accounts/<uuid>
 ```
+
+## 주의사항
+- ⚠️ 계정 전환 후 Claude Code를 재시작하는 것을 권장합니다
+- ⚠️ 계정 정보에는 인증 토큰이 포함되어 있으니 공유하지 마세요
+- ⚠️ 활성 세션이 있는 경우 종료 후 전환하세요
+
+## 추가 정보
+- 개발 가이드: [CLAUDE.md](./CLAUDE.md)
+- 상위 프로젝트: [SRE Toolkit](../../README.md)
+- 문제 신고: [GitLab Issues](https://gitlab.bellsoft.net/devops/sre-toolkit/issues)
