@@ -4,13 +4,13 @@
 
 
 ## 🚀 빠른 시작
-```bash
-# 기본 시스템 정보 표시
+- 기본 시스템 정보 표시
+```shell
 sysinfo
 ```
 
-```bash
-# 모든 정보 표시
+- 모든 정보 표시
+```shell
 sysinfo --all
 ```
 
@@ -18,57 +18,57 @@ sysinfo --all
 
 ## 📋 사용법
 ### 기본 정보 표시
-```bash
+운영체제, 호스트명, 가동시간 등 기본 정보만 표시합니다.
+```shell
 sysinfo
 ```
-운영체제, 호스트명, 가동시간 등 기본 정보만 표시합니다.
 
 ### 특정 정보 선택
-```bash
-# CPU 정보만
+- CPU 정보만
+```shell
 sysinfo --cpu
 ```
 
-```bash
-# 메모리 정보만
+- 메모리 정보만
+```shell
 sysinfo --memory
 ```
 
-```bash
-# 디스크 정보만
+- 디스크 정보만
+```shell
 sysinfo --disk
 ```
 
-```bash
-# 네트워크 정보만
+- 네트워크 정보만
+```shell
 sysinfo --network
 ```
 
 ### 여러 정보 조합
-```bash
-# CPU와 메모리 정보
+- CPU와 메모리 정보
+```shell
 sysinfo --cpu --memory
 ```
 
-```bash
-# CPU, 메모리, 디스크 정보
+- CPU, 메모리, 디스크 정보
+```shell
 sysinfo --cpu --memory --disk
 ```
 
 ### 출력 형식 변경
-```bash
-# JSON 형식으로 출력
+- JSON 형식으로 출력
+```shell
 sysinfo --all --json
 ```
 
-```bash
-# JSON 파일로 저장
+- JSON 파일로 저장
+```shell
 sysinfo --all --json > system_info.json
 ```
 
 ### 디버그 모드
-```bash
-# 상세 로그와 함께 실행
+- 상세 로그와 함께 실행
+```shell
 sysinfo --debug --all
 ```
 
@@ -139,21 +139,21 @@ sysinfo --debug --all
 
 ## 🔍 문제 해결
 ### Python 디렉토리 찾기
-```bash
-# sre-workbench 루트에서
+- sre-workbench 루트에서
+```shell
 cd python
 ```
 
 ### 가상환경 활성화 확인
-```bash
-# 프롬프트에 (.venv)가 표시되어야 함
+- 프롬프트에 (.venv)가 표시되어야 함
+```shell
 which python
 # 출력: /path/to/python/.venv/bin/python
 ```
 
 ### 의존성 재설치
-```bash
-# python 디렉토리에서
+- python 디렉토리에서
+```shell
 uv pip install -e .
 ```
 
