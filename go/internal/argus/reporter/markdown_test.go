@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/domain"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/domain"
 )
 
 func TestNewMarkdownReporter(t *testing.T) {

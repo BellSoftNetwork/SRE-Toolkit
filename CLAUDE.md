@@ -4,13 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 
 ## 프로젝트 개요
-SRE Toolkit은 다양한 SRE 도구들을 모아둔 모노레포입니다. 각 언어별로 디렉토리를 구성하여 독립적인 유틸리티들을 개발하고 관리합니다.
+SRE Workbench는 다양한 SRE 도구들을 모아둔 모노레포입니다. 각 언어별로 디렉토리를 구성하여 독립적인 유틸리티들을 개발하고 관리합니다.
 
 
 
 ## 모노레포 구조
 ```
-sre-toolkit/
+sre-workbench/
 ├── go/                    # Go 기반 유틸리티
 │   ├── cmd/              # 실행 가능한 애플리케이션
 │   │   └── argus/        # ArgoCD 리소스 탐지 도구
@@ -100,7 +100,7 @@ sre-toolkit/
 - 유틸리티별로 독립된 빌드/실행 환경 구성
 
 ### Go 모듈
-- 모듈 경로: `gitlab.bellsoft.net/devops/sre-toolkit/go`
+- 모듈 경로: `gitlab.bellsoft.net/devops/sre-workbench/go`
 - 내부 패키지: `internal/<tool-name>/`
 - 공용 패키지: `pkg/`
 

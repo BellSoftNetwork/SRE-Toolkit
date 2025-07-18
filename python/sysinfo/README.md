@@ -140,7 +140,7 @@ sysinfo --debug --all
 ## 🔍 문제 해결
 ### Python 디렉토리 찾기
 ```bash
-# sre-toolkit 루트에서
+# sre-workbench 루트에서
 cd python
 ```
 

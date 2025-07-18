@@ -1,6 +1,6 @@
 package domain
 
-import "gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/config"
+import "gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/config"
 
 type ResourceIdentifier struct {
 	APIVersion string

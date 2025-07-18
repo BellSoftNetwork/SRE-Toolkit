@@ -2,8 +2,8 @@ package reporter
 
 import (
 	"fmt"
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/domain"
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/pkg/utils/color"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/domain"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/pkg/utils/color"
 	"sort"
 	"strings"
 	"time"

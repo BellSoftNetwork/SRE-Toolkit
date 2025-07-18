@@ -1,8 +1,8 @@
 package analyzer
 
 import (
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/config"
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/domain"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/config"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/domain"
 )
 
 func MapToResource(obj map[string]interface{}, namespace string, cfg *config.Config) *domain.KubernetesResource {

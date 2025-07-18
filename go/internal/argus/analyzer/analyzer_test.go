@@ -4,8 +4,8 @@ import (
 	"regexp"
 	"testing"
 
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/config"
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/domain"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/config"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/domain"
 )
 
 func TestNewAnalyzer(t *testing.T) {

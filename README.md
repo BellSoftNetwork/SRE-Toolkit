@@ -1,4 +1,4 @@
-# SRE Toolkit
+# SRE Workbench
 SRE 작업을 위한 도구 모음
 
 
@@ -35,7 +35,7 @@ SRE 작업을 위한 도구 모음
 
 ## 프로젝트 구조
 ```
-sre-toolkit/
+sre-workbench/
 ├── go/                    # Go 유틸리티
 │   ├── cmd/              # 실행 파일
 │   ├── internal/         # 내부 패키지

@@ -1,4 +1,4 @@
-module gitlab.bellsoft.net/devops/sre-toolkit/go
+module gitlab.bellsoft.net/devops/sre-workbench/go
 
 go 1.24.4
 

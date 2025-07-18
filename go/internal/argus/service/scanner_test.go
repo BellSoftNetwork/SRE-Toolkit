@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/config"
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/domain"
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/reporter"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/config"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/domain"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/reporter"
 )
 
 // Mock K8sClient

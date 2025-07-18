@@ -3,7 +3,7 @@ package domain
 import (
 	"testing"
 
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/config"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/config"
 )
 
 func TestKubernetesResource_IsRootResource(t *testing.T) {

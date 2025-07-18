@@ -9,11 +9,11 @@ import (
 	"strings"
 	"time"
 
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/config"
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/reporter"
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/internal/argus/service"
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/pkg/k8s/client"
-	"gitlab.bellsoft.net/devops/sre-toolkit/go/pkg/utils/color"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/config"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/reporter"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/internal/argus/service"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/pkg/k8s/client"
+	"gitlab.bellsoft.net/devops/sre-workbench/go/pkg/utils/color"
 )
 
 type CLIFlags struct {

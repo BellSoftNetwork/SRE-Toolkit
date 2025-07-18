@@ -15,8 +15,8 @@ sysinfo는 시스템의 하드웨어 및 소프트웨어 정보를 수집하여 
 ### 프로젝트 초기화
 ```bash
 # 저장소 클론
-git clone https://gitlab.bellsoft.net/devops/sre-toolkit.git
-cd sre-toolkit/python
+git clone https://gitlab.bellsoft.net/devops/sre-workbench.git
+cd sre-workbench/python
 
 # 가상환경 생성 및 활성화
 uv venv
