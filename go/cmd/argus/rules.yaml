@@ -1,0 +1,165 @@
+# Argus 설정 파일
+# 모든 설정은 이 파일에서 관리됩니다
+
+# ArgoCD 관리 리소스 식별
+argocd:
+  # ArgoCD가 관리하는 리소스임을 나타내는 라벨
+  managed_labels:
+    - "argocd.argoproj.io/instance"
+    - "app.kubernetes.io/instance"
+  
+  # ArgoCD 동기화 관련 어노테이션
+  sync_annotations:
+    - "argocd.argoproj.io/sync-wave"
+    - "argocd.argoproj.io/hook"
+    - "argocd.argoproj.io/hook-delete-policy"
+
+# 제외 규칙
+exclusions:
+  # 시스템 네임스페이스 (전체 제외)
+  system_namespaces:
+    - "kube-system/*/*"
+    - "kube-public/*/*"
+    - "kube-node-lease/*/*"
+
+  # 자동 생성 리소스
+  auto_generated:
+    - "*/Lease/*"
+    - "*/ConfigMap/istio-ca-root-cert"
+    - "*/ConfigMap/kube-root-ca.crt"
+    - "*/ServiceAccount/default"
+
+  # Rancher 관련 네임스페이스
+  rancher:
+    - "cattle-*/*/*"
+    - "c-*/*/*"
+    - "p-*/*/*"
+    - "u-*/*/*"
+
+  # 기타 제외 대상
+  others:
+    - "istio-system/*/*"
+    - "logging/*/*"
+    - "cert-manager/Secret/cert-manager-*"
+    - "cert-manager/*/*"
+    - "argocd/*/*"
+    - "*/Job/*"
+
+# 자동 관리 리소스 식별
+auto_managed:
+  # 자동 관리되는 것을 나타내는 어노테이션
+  annotations:
+    - "reflector.v1.k8s.emberstack.com/auto-reflects"
+    - "reflector.v1.k8s.emberstack.com/reflects"
+    - "pvc.kubernetes.io/bind-completed"
+  
+  # cert-manager 관련 어노테이션
+  cert_manager_annotations:
+    - "cert-manager.io/certificate-name"
+    - "cert-manager.io/issuer-name"
+    - "cert-manager.io/issuer-kind"
+    - "cert-manager.io/issuer-group"
+    - "cert-manager.io/common-name"
+    - "cert-manager.io/alt-names"
+    - "cert-manager.io/ip-sans"
+    - "cert-manager.io/uri-sans"
+
+# 패턴 기반 제외
+patterns:
+  # Secret 이름 패턴
+  secret_patterns:
+    - "^default-token-[a-z0-9]+$"
+    - "^.*-token-[a-z0-9]+$"
+    - "^.*-admission$"
+    - "^sh\\.helm\\.release\\.v1\\..*"
+  
+  # Rancher 관리 리소스 패턴
+  rancher_managed:
+    rolebinding:
+      - "^rb-"
+  
+  # StatefulSet PVC 패턴
+  statefulset_pvc: "^[a-zA-Z0-9-]+-[a-zA-Z0-9-]+-\\d+$"
+
+# 리소스 타입 설정
+resource_types:
+  # 스킵할 리소스 타입
+  skip:
+    # 이벤트 및 런타임 정보
+    - "events"
+    - "events.events.k8s.io"
+    - "pods"
+    - "pods.metrics.k8s.io"
+    - "nodes"
+    - "nodes.metrics.k8s.io"
+    - "componentstatuses"
+    # 메트릭
+    - "podmetrics.metrics.k8s.io"
+    - "nodemetrics.metrics.k8s.io"
+    - "podmetrics"
+    - "nodemetrics"
+    # 엔드포인트
+    - "endpoints"
+    - "endpointslices"
+    - "endpointslices.discovery.k8s.io"
+    # 인증/인가
+    - "localsubjectaccessreviews.authorization.k8s.io"
+    - "selfsubjectaccessreviews.authorization.k8s.io"
+    - "selfsubjectrulesreviews.authorization.k8s.io"
+    - "subjectaccessreviews.authorization.k8s.io"
+    - "tokenreviews.authentication.k8s.io"
+    # API 서버
+    - "flowschemas.flowcontrol.apiserver.k8s.io"
+    - "prioritylevelconfigurations.flowcontrol.apiserver.k8s.io"
+    # 기타
+    - "leases.coordination.k8s.io"
+    - "bindings"
+    - "replicationcontrollers"
+    # 런타임 리소스
+    - "controllerrevisions.apps"
+    - "replicasets.apps"
+    # VPA
+    - "verticalpodautoscalercheckpoints.autoscaling.k8s.io"
+  
+  # 중요 리소스 타입 (빠른 스캔 모드에서 사용)
+  important:
+    # 핵심 워크로드
+    - "deployments.apps"
+    - "statefulsets.apps"
+    - "daemonsets.apps"
+    - "cronjobs.batch"
+    - "jobs.batch"
+    # 서비스 및 네트워킹
+    - "services"
+    - "ingresses.networking.k8s.io"
+    # Istio 리소스
+    - "gateways.networking.istio.io"
+    - "virtualservices.networking.istio.io"
+    - "destinationrules.networking.istio.io"
+    - "serviceentries.networking.istio.io"
+    - "sidecars.networking.istio.io"
+    - "envoyfilters.networking.istio.io"
+    # 구성
+    - "configmaps"
+    - "secrets"
+    - "persistentvolumeclaims"
+    # 정책 및 보안
+    - "networkpolicies.networking.k8s.io"
+    - "poddisruptionbudgets.policy"
+    - "authorizationpolicies.security.istio.io"
+    - "peerauthentications.security.istio.io"
+    # 오토스케일링
+    - "horizontalpodautoscalers.autoscaling"
+    # RBAC
+    - "serviceaccounts"
+    - "roles.rbac.authorization.k8s.io"
+    - "rolebindings.rbac.authorization.k8s.io"
+
+# 성능 설정
+performance:
+  # 기본 동시 처리 수
+  default_max_concurrent: 10
+  # 빠른 스캔 모드 동시 처리 수
+  fast_scan_concurrent: 15
+  # 배치 크기 (0 = 자동)
+  batch_size: 0
