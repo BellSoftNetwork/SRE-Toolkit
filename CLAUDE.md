@@ -164,6 +164,7 @@ cd repo
 
 ## 현재 유틸리티 목록
 - **Argus** (Go): ArgoCD로 관리되지 않는 K8s 리소스 탐지
+- **K8s-Diff** (Go): 두 Kubernetes 클러스터 간의 리소스 차이를 비교
 - **Claude Account Switcher** (Script): Claude Code CLI 계정 전환 도구
 - **sysinfo** (Python): 시스템 정보를 출력하는 CLI 도구
 

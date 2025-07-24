@@ -18,6 +18,7 @@ SRE 작업을 위한 도구 모음
 | 도구 | 설명 | 문서 |
 |------|------|------|
 | **Argus** | ArgoCD 미관리 K8s 리소스 탐지 | [README](go/cmd/argus/README.md) |
+| **K8s-Diff** | 두 K8s 클러스터 간 리소스 비교 | [README](go/cmd/k8s-diff/README.md) |
 
 
 ### Python 유틸리티
